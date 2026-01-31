@@ -3,33 +3,39 @@ import { ENV } from "../config/env";
 
 const WHATSAPP_API_URL = "https://graph.facebook.com/v19.0";
 
-export async function sendDonationWhatsApp(payload: {
+export type WhatsAppPayload = {
   to: string;
   name: string;
   amount: number;
   transactionId: string;
-  receiptUrl: string; // still kept for future use
-}) {
+};
+
+export async function sendDonationWhatsApp(payload: WhatsAppPayload) {
   try {
-    console.log("📲 Sending WhatsApp template message");
+    if (!payload.to) {
+      console.warn("⚠️ WhatsApp skipped: missing phone number");
+      return;
+    }
+
+    console.log("📲 Sending WhatsApp thank-you message");
     console.log("➡️ To:", payload.to);
 
-    await axios.post(
+    const response = await axios.post(
       `${WHATSAPP_API_URL}/${ENV.WHATSAPP.PHONE_NUMBER_ID}/messages`,
       {
         messaging_product: "whatsapp",
         to: payload.to,
         type: "template",
         template: {
-          name: "donation_confirmation_receipt",
-          language: { code: "en" },
+          name: "donation_thank_you_v1",
+          language: { code: "en_US" },
           components: [
             {
               type: "body",
               parameters: [
-                { type: "text", text: payload.name },                 // {{1}}
-                { type: "text", text: payload.amount.toFixed(2) },    // {{2}}
-                { type: "text", text: payload.transactionId },        // {{3}}
+                { type: "text", text: payload.name || "Supporter" },          // {{1}}
+                { type: "text", text: payload.amount.toFixed(2) },            // {{2}}
+                { type: "text", text: payload.transactionId },                // {{3}}
               ],
             },
           ],
@@ -40,15 +46,16 @@ export async function sendDonationWhatsApp(payload: {
           Authorization: `Bearer ${ENV.WHATSAPP.ACCESS_TOKEN}`,
           "Content-Type": "application/json",
         },
+        timeout: 10000,
       }
     );
 
-    console.log("✅ WhatsApp message sent successfully");
+    console.log("✅ WhatsApp sent");
+    console.log("📩 Message ID:", response.data?.messages?.[0]?.id);
   } catch (error: any) {
-    console.error("❌ WhatsApp send failed");
+    console.error("❌ WhatsApp failed");
 
     if (error.response) {
-      console.error("Status:", error.response.status);
       console.error(
         "Response:",
         JSON.stringify(error.response.data, null, 2)

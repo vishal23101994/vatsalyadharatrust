@@ -10,7 +10,8 @@ import { ENV } from "./config/env";
 const app = express();
 
 /**
- * ⚠️ Razorpay webhook MUST be RAW body
+ * ⚠️ Razorpay webhook MUST receive RAW body
+ * ⚠️ This route must come BEFORE bodyParser.json()
  */
 app.post(
   "/donation/razorpay-webhook",
@@ -31,10 +32,16 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// 📄 Serve receipts
+/**
+ * 📄 Serve donation receipts
+ * Maps:
+ *   backend/public/receipts/*.pdf
+ * to:
+ *   https://yourdomain.com/receipts/*.pdf
+ */
 app.use(
   "/receipts",
-  express.static(path.join(process.cwd(), "public", "receipts"))
+  express.static(path.join(__dirname, "../public/receipts"))
 );
 
 // Donation routes
@@ -43,10 +50,10 @@ app.use("/donation", donationRoutes);
 // Health check
 app.get("/health", (_, res) => res.json({ status: "OK" }));
 
-// Birthday cron
+// 🎂 Birthday cron (runs once on server start)
 startBirthdayCron();
 
-// 🚀 SINGLE listen
+// 🚀 Start server
 app.listen(ENV.PORT, () => {
   console.log(`🚀 Backend running on port ${ENV.PORT}`);
 });

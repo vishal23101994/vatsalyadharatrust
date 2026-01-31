@@ -9,7 +9,7 @@ declare global {
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Heart, IndianRupee, Phone, User, Calendar } from "lucide-react";
+import { Heart, IndianRupee, Phone, User, Calendar, CheckCircle } from "lucide-react";
 
 export default function Donate() {
   const [form, setForm] = useState({
@@ -17,13 +17,16 @@ export default function Donate() {
     phone: "",
     amount: "",
     donorBirthday: "",
+    whatsappOptIn: true, // ✅ Recommended ON
   });
 
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target;
+    setForm({ ...form, [name]: type === "checkbox" ? checked : value });
+  };
 
   const donate = async () => {
     if (loading) return;
@@ -43,6 +46,7 @@ export default function Donate() {
           phone: form.phone,
           amount: Number(form.amount),
           donorBirthday: form.donorBirthday,
+          whatsappOptIn: form.whatsappOptIn,
         }),
       });
 
@@ -60,10 +64,10 @@ export default function Donate() {
         return;
       }
 
-      /* 2️⃣ RAZORPAY OPTIONS (NO HANDLER, NO JS REDIRECT) */
+      /* 2️⃣ RAZORPAY OPTIONS */
       const options = {
         key: data.key,
-        amount: data.amount * 100, // paise
+        amount: data.amount * 100,
         currency: "INR",
         name: "Vatsalya Dhara Trust",
         description: "Donation",
@@ -72,22 +76,26 @@ export default function Donate() {
           name: form.name,
           contact: form.phone,
         },
-        handler: () => {
-          // UI only — backend logic via webhook
+        handler: (response: any) => {
+          // ✅ STORE PAYMENT ID FOR RECEIPT FETCH
+          localStorage.setItem(
+            "razorpay_payment_id",
+            response.razorpay_payment_id
+          );
+
           window.location.href = "/donate/success";
         },
-
         theme: { color: "#f97316" },
-
         modal: {
-          ondismiss: () => {
-            setLoading(false);
-          },
+          ondismiss: () => setLoading(false),
         },
       };
 
-      const rzp = new window.Razorpay(options);
-      rzp.open();
+      // ✅ ADD THIS BEFORE OPEN()
+      localStorage.setItem("donor_name", form.name || "Dear Supporter");
+      localStorage.setItem("donation_amount", form.amount);
+
+      new window.Razorpay(options).open();
     } catch (err) {
       console.error(err);
       setMessage("Unable to initiate payment");
@@ -146,58 +154,54 @@ export default function Donate() {
             <label className="text-sm font-medium mb-1 block">Full Name</label>
             <div className="flex items-center gap-3 bg-white rounded-xl border px-4 py-3">
               <User size={18} className="text-amber-600" />
-              <input
-                name="name"
-                onChange={handleChange}
-                className="w-full outline-none bg-transparent"
-              />
+              <input name="name" onChange={handleChange} className="w-full outline-none bg-transparent" />
             </div>
           </div>
 
           {/* PHONE */}
           <div className="mb-5">
-            <label className="text-sm font-medium mb-1 block">
-              Mobile Number
-            </label>
+            <label className="text-sm font-medium mb-1 block">Mobile Number</label>
             <div className="flex items-center gap-3 bg-white rounded-xl border px-4 py-3">
               <Phone size={18} className="text-amber-600" />
-              <input
-                name="phone"
-                onChange={handleChange}
-                className="w-full outline-none bg-transparent"
-              />
+              <input name="phone" onChange={handleChange} className="w-full outline-none bg-transparent" />
             </div>
           </div>
 
           {/* AMOUNT */}
           <div className="mb-5">
-            <label className="text-sm font-medium mb-1 block">
-              Donation Amount (₹)
-            </label>
+            <label className="text-sm font-medium mb-1 block">Donation Amount (₹)</label>
             <div className="flex items-center gap-3 bg-white rounded-xl border px-4 py-3">
               <IndianRupee size={18} className="text-amber-600" />
-              <input
-                name="amount"
-                onChange={handleChange}
-                className="w-full outline-none bg-transparent"
-              />
+              <input name="amount" onChange={handleChange} className="w-full outline-none bg-transparent" />
             </div>
           </div>
 
           {/* DOB */}
-          <div className="mb-8">
-            <label className="text-sm font-medium mb-1 block">
-              Date of Birth
-            </label>
+          <div className="mb-5">
+            <label className="text-sm font-medium mb-1 block">Date of Birth</label>
             <div className="flex items-center gap-3 bg-white rounded-xl border px-4 py-3">
               <Calendar size={18} className="text-amber-600" />
-              <input
-                type="date"
-                name="donorBirthday"
-                onChange={handleChange}
-                className="w-full outline-none bg-transparent"
-              />
+              <input type="date" name="donorBirthday" onChange={handleChange} className="w-full outline-none bg-transparent" />
             </div>
+          </div>
+
+          {/* ✅ WHATSAPP OPT-IN */}
+          <div className="mb-6">
+            <label className="flex items-start gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                name="whatsappOptIn"
+                checked={form.whatsappOptIn}
+                onChange={handleChange}
+                className="mt-1 accent-green-600"
+              />
+              <span className="text-sm">
+                <span className="flex items-center gap-1 font-semibold text-green-700">
+                  <CheckCircle size={16} /> Recommended
+                </span>
+                Receive your donation receipt and confirmation on WhatsApp
+              </span>
+            </label>
           </div>
 
           <button

@@ -9,10 +9,9 @@ export async function razorpayWebhook(req: Request, res: Response) {
   try {
     const signature = req.headers["x-razorpay-signature"] as string;
 
-    // 🔐 Verify using RAW BODY (Buffer)
     const expectedSignature = crypto
       .createHmac("sha256", ENV.RAZORPAY.WEBHOOK_SECRET)
-      .update(req.body) // Buffer
+      .update(req.body)
       .digest("hex");
 
     if (expectedSignature !== signature) {
@@ -20,31 +19,66 @@ export async function razorpayWebhook(req: Request, res: Response) {
       return res.status(400).json({ message: "Invalid webhook signature" });
     }
 
-    // ✅ NOW parse JSON
     const payload = JSON.parse(req.body.toString("utf8"));
-
     console.log("✅ Razorpay webhook event:", payload.event);
 
-    if (payload.event === "payment.captured") {
-      const payment = payload.payload.payment.entity;
+    if (payload.event !== "payment.captured") {
+      return res.json({ status: "ignored" });
+    }
 
-      console.log("💰 Payment captured:", payment.id);
+    const payment = payload.payload.payment.entity;
+    console.log("💰 Payment captured:", payment.id);
 
-      const donation = await prisma.donation.create({
-        data: {
-          name: payment.notes?.donor_name || "Anonymous",
-          phone: payment.notes?.donor_phone || "",
-          amount: payment.amount / 100,
-          razorpayOrderId: payment.order_id,
-          razorpayPaymentId: payment.id,
-          status: "SUCCESS",
-        },
-      });
+    const notes = payment.notes || {};
 
-      console.log("✅ Donation saved:", donation.id);
+    const whatsappOptIn =
+      notes.whatsapp_optin === "true" ||
+      notes.whatsapp_optin === true ||
+      notes.whatsapp_optin === "1";
 
-      const receiptUrl = await generateReceiptPDF(donation);
+    const existing = await prisma.donation.findUnique({
+      where: { razorpayPaymentId: payment.id },
+    });
 
+    if (existing) {
+      return res.json({ status: "duplicate_ignored" });
+    }
+
+    const donation = await prisma.donation.create({
+      data: {
+        name: notes.donor_name || "Anonymous",
+        phone: notes.donor_phone || "",
+        email: notes.donor_email || null,
+        amount: payment.amount / 100,
+        razorpayOrderId: payment.order_id,
+        razorpayPaymentId: payment.id,
+        donorBirthday: notes.donor_birthday
+          ? new Date(notes.donor_birthday)
+          : null,
+        whatsappOptIn,
+        status: "SUCCESS",
+      },
+    });
+
+    console.log("✅ Donation saved:", donation.id);
+
+    /**
+     * 📄 Generate receipt
+     */
+    const receiptUrl = await generateReceiptPDF(donation);
+
+    /**
+     * 💾 Save receipt URL
+     */
+    await prisma.donation.update({
+      where: { id: donation.id },
+      data: { receiptUrl },
+    });
+
+    /**
+     * 📲 WhatsApp
+     */
+    if (whatsappOptIn && donation.phone) {
       const whatsappNumber = donation.phone.startsWith("91")
         ? donation.phone
         : `91${donation.phone}`;
@@ -54,7 +88,6 @@ export async function razorpayWebhook(req: Request, res: Response) {
         name: donation.name,
         amount: donation.amount,
         transactionId: donation.razorpayPaymentId!,
-        receiptUrl,
       });
     }
 

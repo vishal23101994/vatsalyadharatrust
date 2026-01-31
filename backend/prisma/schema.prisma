@@ -14,8 +14,12 @@ model Donation {
   email             String?
   amount            Float
   razorpayOrderId   String   @unique
-  razorpayPaymentId String?
+  razorpayPaymentId String?  @unique
   status            String
   donationDate      DateTime @default(now())
   donorBirthday     DateTime?
+
+  whatsappOptIn Boolean @default(true)
+  receiptUrl    String?
 }
+
