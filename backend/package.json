@@ -1,0 +1,45 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Vatsalyadharatrust Backend",
+  "main": "dist/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "ts-node src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "test": "echo \"No tests specified\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nestjs/common": "^11.1.11",
+    "@nestjs/config": "^4.0.2",
+    "@nestjs/core": "^11.1.11",
+    "@nestjs/platform-express": "^11.1.11",
+    "@prisma/client": "^6.19.2",
+    "axios": "^1.13.2",
+    "body-parser": "^2.2.2",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "node-cron": "^4.2.1",
+    "pdfkit": "^0.17.2",
+    "prisma": "^6.19.2",
+    "razorpay": "^2.9.6",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "twilio": "^5.11.2"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.14",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.0.10",
+    "@types/pdfkit": "^0.17.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
