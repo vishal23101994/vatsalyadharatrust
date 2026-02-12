@@ -1,117 +1,140 @@
 "use client";
 
 import Link from "next/link";
-import { Phone, MapPin, HeartHandshake } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
+import { FaInstagram } from "react-icons/fa";
+import FloatingParticles from "@/components/FloatingParticles";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-gradient-to-b from-[#4B1E00] via-[#3A1700] to-[#2E1300] text-[#FFF3D6]">
+    <footer className="relative overflow-hidden bg-gradient-to-br from-[#6B0C0C] via-[#4E0808] to-[#2A0404] text-[#FFE9C4]">
 
-      {/* soft glow */}
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(255,200,120,0.15),transparent_60%)]" />
+      {/* Floating Aura Particles */}
+      <FloatingParticles count={15} />
 
-      <div className="relative max-w-7xl mx-auto px-6 py-20 grid gap-12 md:grid-cols-4">
+      {/* Golden Glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,215,120,0.18),transparent_60%)] pointer-events-none" />
 
-        {/* TRUST INFO */}
-        <div className="md:col-span-1">
-          <div className="flex items-center gap-3 mb-4">
-            <img
-              src="/images/vatsalya.png"
-              alt="Vatsalya Dhara Trust Logo"
-              className="w-12 h-12 object-contain drop-shadow-lg"
-            />
-            <h3 className="font-serif text-2xl font-semibold">
-              Vatsalya Dhara Trust
-            </h3>
+      <div className="relative max-w-7xl mx-auto px-6 py-24">
+
+        {/* ================= MAIN GRID ================= */}
+        <div className="grid md:grid-cols-3 gap-16">
+
+          {/* ===== BRAND SECTION ===== */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-4">
+              <img
+                src="/images/vatsalya.png"
+                alt="Vatsalya Logo"
+                className="w-16 h-16 object-contain drop-shadow-lg"
+              />
+              <h2 className="text-2xl font-serif font-semibold text-yellow-400">
+                Vatsalya Dhara Trust
+              </h2>
+            </div>
+
+            <p className="text-sm leading-relaxed text-[#FFE8C6]/90">
+              Rooted in the sacred philosophy of Seva, Vatsalya Dhara Trust
+              works tirelessly to uplift communities through compassion,
+              dignity, and sustainable humanitarian initiatives.
+            </p>
+
+            {/* Instagram */}
+            <a
+              href="https://www.instagram.com/vatsalya_dhara/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 group"
+            >
+              <div className="p-3 rounded-full bg-white/10 border border-yellow-400/30 group-hover:scale-110 transition duration-300">
+                <FaInstagram size={18} className="text-yellow-400" />
+              </div>
+              <span className="text-sm group-hover:text-yellow-300 transition">
+                Follow us on Instagram
+              </span>
+            </a>
           </div>
 
-          <p className="text-sm leading-relaxed text-[#FFE8B5]">
-            Serving humanity through compassion, selfless service, and
-            value-based initiatives in education, healthcare, animal care,
-            and emergency support.
-          </p>
+          {/* ===== QUICK LINKS ===== */}
+          <div>
+            <h4 className="text-lg font-semibold text-yellow-400 mb-6">
+              Quick Links
+            </h4>
 
-          <div className="mt-4 flex items-center gap-2 text-amber-300 text-sm">
-            <HeartHandshake size={16} />
-            Serving with Love & Responsibility
-          </div>
-        </div>
-
-        {/* QUICK LINKS */}
-        <div>
-          <h4 className="font-semibold text-lg mb-4 text-amber-200">
-            Quick Links
-          </h4>
-
-          <ul className="space-y-2 text-sm">
-            {[
-              { label: "Home", href: "/" },
-              { label: "About Us", href: "/about" },
-              { label: "What We Do", href: "/what-we-do" },
-              { label: "Gallery", href: "/gallery" },
-              { label: "Contact", href: "/contact" },
-            ].map((link) => (
-              <li key={link.href}>
+            <div className="space-y-3 text-sm">
+              {[
+                { name: "Home", href: "/" },
+                { name: "About Us", href: "/about" },
+                { name: "What We Do", href: "/what-we-do" },
+                { name: "Our Work", href: "/our-work" },
+                { name: "Contact", href: "/contact" },
+                { name: "Donate", href: "/donate" },
+              ].map((item, i) => (
                 <Link
-                  href={link.href}
-                  className="hover:text-white transition flex items-center gap-2"
+                  key={i}
+                  href={item.href}
+                  className="block hover:text-yellow-300 transition duration-300 hover:translate-x-2"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-                  {link.label}
+                  {item.name}
                 </Link>
-              </li>
-            ))}
-          </ul>
+              ))}
+            </div>
+          </div>
+
+          {/* ===== CONTACT + DONATE ===== */}
+          <div>
+            <h4 className="text-lg font-semibold text-yellow-400 mb-6">
+              Contact Information
+            </h4>
+
+            <div className="space-y-5 text-sm">
+
+              <div className="flex gap-3">
+                <MapPin size={18} className="text-yellow-400 mt-1" />
+                <p className="leading-relaxed">
+                  Vatsalya Bhawan, P-75, Street No. 5,
+                  Bihari Colony Extension, Shahdara,
+                  Delhi – 110032
+                </p>
+              </div>
+
+              <div className="flex gap-3">
+                <Phone size={18} className="text-yellow-400 mt-1" />
+                <div>
+                  <p>+91 9910987666</p>
+                  <p>+91 9810900699</p>
+                </div>
+              </div>
+            </div>
+
+            {/* PREMIUM DONATE BUTTON */}
+            <div className="mt-10">
+              <Link
+                href="/donate"
+                className="group relative inline-flex items-center justify-center w-full px-10 py-4 rounded-2xl font-semibold text-[#4B1E00] bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-yellow-500/40"
+              >
+                <span className="relative z-10">
+                  ❤️ Support Our Sacred Mission
+                </span>
+
+                {/* Golden Glow Effect */}
+                <span className="absolute inset-0 rounded-2xl bg-yellow-400 blur-xl opacity-0 group-hover:opacity-40 transition duration-500"></span>
+              </Link>
+            </div>
+          </div>
+
         </div>
 
-        {/* ADDRESS */}
-        <div>
-          <h4 className="font-semibold text-lg mb-4 flex items-center gap-2 text-amber-200">
-            <MapPin size={18} /> Address
-          </h4>
-
-          <p className="text-sm leading-relaxed text-[#FFE8B5]">
-            Vatsalya Bhawan, P-75, Street Number 5,
-            <br />
-            Near Dua Chai Waale,
-            <br />
-            Bihari Colony Extension,
-            <br />
-            Shahdara, Delhi – 110032
+        {/* ================= DIVIDER ================= */}
+        <div className="mt-20 border-t border-yellow-500/20 pt-8 text-center text-sm text-[#FFE9C4]/80">
+          <p>
+            © {new Date().getFullYear()} Vatsalya Dhara Trust • Serving Humanity
+          </p>
+          <p className="mt-3 text-yellow-400 tracking-widest font-semibold">
+            सेवा • करुणा • मानवता
           </p>
         </div>
 
-        {/* CONTACT */}
-        <div>
-          <h4 className="font-semibold text-lg mb-4 flex items-center gap-2 text-amber-200">
-            <Phone size={18} /> Contact
-          </h4>
-
-          <div className="flex flex-col gap-3 text-sm">
-            <a
-              href="tel:+919910987666"
-              className="hover:text-white transition"
-            >
-              +91 9910987666
-            </a>
-            <a
-              href="tel:+919810900699"
-              className="hover:text-white transition"
-            >
-              +91 9810900699
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* BOTTOM BAR */}
-      <div className="relative border-t border-[#FFE8B5]/20 py-6 text-center text-xs text-[#FFE8B5]">
-        <p>
-          © {new Date().getFullYear()} Vatsalya Dhara Trust
-        </p>
-        <p className="mt-1 tracking-wide text-amber-300">
-          सेवा • करुणा • मानवता
-        </p>
       </div>
     </footer>
   );
