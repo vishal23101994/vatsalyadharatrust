@@ -37,7 +37,6 @@ body {
 .marquee {
   display: flex;
   width: max-content;
-  animation: scroll-left 25s linear infinite;
 }
 
 .marquee:hover {

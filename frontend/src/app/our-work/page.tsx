@@ -115,7 +115,7 @@ export default function OurworkPage() {
 
         {/* SECTIONS */}
         {sections.map((section) => {
-          const images = (sectionsData[section.key] || []).slice(0, 5);
+          const images = sectionsData[section.key] || [];
 
           if (images.length === 0) return null;
 
@@ -140,7 +140,12 @@ export default function OurworkPage() {
               {/* Animated Image Slider */}
               <div className="relative overflow-hidden">
 
-                <div className="marquee gap-6">
+                <div
+                  className="marquee gap-6"
+                  style={{
+                    animation: `scroll-left ${mappedImages.length * 8}s linear infinite`,
+                  }}
+                >
 
                   {[...mappedImages, ...mappedImages].map((img, index) => (
                     <div
@@ -218,7 +223,7 @@ export default function OurworkPage() {
               className="absolute bottom-4 right-4 bg-amber-700 text-white px-6 py-3 rounded-full shadow-xl hover:bg-amber-800 transition"
             >
               <Download size={18} />
-              Download
+              
             </a>
           </div>
         </div>
