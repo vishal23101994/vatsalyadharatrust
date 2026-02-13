@@ -22,64 +22,83 @@ export default function Navbar() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-amber-200 shadow-[0_8px_30px_rgba(0,0,0,0.05)]">
+    <header className="sticky top-0 z-50 backdrop-blur-xl 
+                       bg-gradient-to-r from-[#FFF8E7]/90 via-white/90 to-[#FFF3D6]/90
+                       border-b border-amber-200
+                       shadow-[0_10px_40px_rgba(180,120,40,0.15)]">
 
-      {/* Subtle golden glow line */}
-      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-40" />
+      {/* Golden glow line */}
+      <div className="absolute bottom-0 left-0 right-0 h-[2px] 
+                      bg-gradient-to-r from-transparent via-amber-400 to-transparent opacity-60" />
 
-      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between relative">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
-        {/* ================= LOGO ================= */}
-        <Link href="/" className="flex items-center gap-3 group">
+        {/* ================= BRAND ================= */}
+        <Link href="/" className="flex items-center gap-4 group">
+
           <motion.img
             src="/images/vatsalya.png"
             alt="Vatsalya Logo"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
-            className="w-10 h-10 md:w-12 md:h-12 object-contain drop-shadow-lg group-hover:scale-105 transition"
+            className="w-12 h-12 md:w-14 md:h-14 object-contain drop-shadow-lg"
           />
-          <span className="font-serif text-xl md:text-2xl font-semibold text-[#4B1E00] group-hover:text-amber-700 transition">
-            Vatsalya Dhara Trust
-          </span>
+
+          <div className="leading-tight">
+            <motion.h1
+              whileHover={{ scale: 1.02 }}
+              className="font-serif text-l md:text-1xl lg:text-2xl 
+                         font-semibold text-[#4B1E00] tracking-wide"
+            >
+              Vatsalya Dhara Trust
+            </motion.h1>
+
+            <span className="text-xs md:text-sm text-amber-700 tracking-widest">
+              (Regd.)
+            </span>
+          </div>
         </Link>
 
         {/* ================= DESKTOP NAV ================= */}
-        <nav className="hidden md:flex items-center gap-8 font-medium relative">
+        <nav className="hidden md:flex items-center gap-8 text-[15px] font-medium">
 
           {navLinks.map((link) => {
             const active = isActive(link.href);
 
             return (
-              <Link key={link.href} href={link.href} className="relative">
-                <motion.span
-                  whileHover={{ y: -2 }}
-                  className={`relative px-3 py-1 rounded-full transition ${
+              <Link key={link.href} href={link.href} className="relative group">
+
+                <span
+                  className={`transition-colors duration-300 ${
                     active
                       ? "text-amber-700 font-semibold"
-                      : "text-[#4B1E00] hover:text-amber-700"
+                      : "text-[#4B1E00] group-hover:text-amber-700"
                   }`}
                 >
                   {link.label}
+                </span>
 
-                  {/* Animated active background pill */}
-                  {active && (
-                    <motion.span
-                      layoutId="navActive"
-                      className="absolute inset-0 rounded-full bg-amber-100 -z-10"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                </motion.span>
+                {/* Animated underline */}
+                <span
+                  className={`absolute left-0 -bottom-1 h-[2px] bg-amber-600 
+                              transition-all duration-300 ${
+                    active ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
               </Link>
             );
           })}
 
           {/* ================= DONATE BUTTON ================= */}
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}>
+          <motion.div whileHover={{ scale: 1.07 }} whileTap={{ scale: 0.95 }}>
             <Link
               href="/donate"
-              className="flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white px-6 py-2 rounded-full shadow-lg hover:shadow-amber-400/40 transition font-semibold"
+              className="flex items-center gap-2 
+                         bg-gradient-to-r from-amber-500 to-orange-500 
+                         text-white px-7 py-3 rounded-full 
+                         shadow-lg hover:shadow-orange-400/40 
+                         transition font-semibold"
             >
               <HeartHandshake size={18} />
               Donate
@@ -87,7 +106,7 @@ export default function Navbar() {
           </motion.div>
         </nav>
 
-        {/* ================= MOBILE MENU BUTTON ================= */}
+        {/* ================= MOBILE BUTTON ================= */}
         <button
           className="md:hidden text-[#4B1E00]"
           onClick={() => setOpen(true)}
@@ -95,11 +114,11 @@ export default function Navbar() {
           <Menu size={28} />
         </button>
       </div>
-      
+
+      {/* ================= MOBILE DRAWER ================= */}
       <AnimatePresence>
         {open && (
           <>
-            {/* Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -108,33 +127,22 @@ export default function Navbar() {
               className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[90]"
             />
 
-            {/* Drawer */}
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.35 }}
-              className="fixed top-0 right-0 h-screen w-[85%] max-w-sm z-[100] bg-gradient-to-b from-[#FFF6E5] to-[#FFE8C2] shadow-2xl flex flex-col"
+              className="fixed top-0 right-0 h-screen w-[85%] max-w-sm z-[100]
+                         bg-gradient-to-b from-[#FFF6E5] to-[#FFE8C2]
+                         shadow-2xl flex flex-col"
             >
-              {/* Header */}
-              <div className="flex items-center justify-between px-6 py-5 border-b border-amber-200 bg-white/60 backdrop-blur-md">
-                <div className="flex items-center gap-3">
-                  <img
-                    src="/images/vatsalya.png"
-                    className="w-8 h-8 object-contain"
-                  />
-                  <h2 className="font-serif text-lg font-semibold text-[#4B1E00]">
-                    Vatsalya Dhara
-                  </h2>
-                </div>
-
+              <div className="flex items-center justify-between px-6 py-6 border-b border-amber-200">
                 <button onClick={() => setOpen(false)}>
                   <X size={24} />
                 </button>
               </div>
 
-              {/* Links */}
-              <div className="flex flex-col px-6 py-8 gap-4 flex-1">
+              <div className="flex flex-col px-6 py-8 gap-5 flex-1">
                 {navLinks.map((link) => {
                   const active = isActive(link.href);
 
@@ -143,29 +151,24 @@ export default function Navbar() {
                       key={link.href}
                       href={link.href}
                       onClick={() => setOpen(false)}
-                      className={`relative px-5 py-4 rounded-2xl transition-all duration-300 ${
+                      className={`px-5 py-4 rounded-2xl transition-all duration-300 ${
                         active
                           ? "bg-white shadow-md text-amber-700 font-semibold"
-                          : "text-[#4B1E00] hover:bg-white/70 hover:shadow-sm"
+                          : "text-[#4B1E00] hover:bg-white/70"
                       }`}
                     >
                       {link.label}
-
-                      {/* Active indicator line */}
-                      {active && (
-                        <span className="absolute left-0 top-1/2 -translate-y-1/2 h-6 w-1 bg-amber-500 rounded-r-full"></span>
-                      )}
                     </Link>
                   );
                 })}
               </div>
 
-              {/* Bottom Section */}
               <div className="px-6 pb-8">
                 <Link
                   href="/donate"
                   onClick={() => setOpen(false)}
-                  className="block text-center bg-gradient-to-r from-amber-500 to-orange-500 text-white py-4 rounded-full font-semibold shadow-lg hover:shadow-orange-400/40 transition transform hover:scale-[1.03]"
+                  className="block text-center bg-gradient-to-r from-amber-500 to-orange-500 
+                             text-white py-4 rounded-full font-semibold shadow-lg"
                 >
                   ❤️ Support & Donate
                 </Link>
@@ -178,7 +181,6 @@ export default function Navbar() {
           </>
         )}
       </AnimatePresence>
-   
     </header>
   );
 }

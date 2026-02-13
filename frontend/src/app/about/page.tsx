@@ -3,58 +3,105 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Users, Heart, Sparkles, Target, ShieldCheck } from 'lucide-react';
+import { Users, Heart, Sparkles, Target, ShieldCheck, HandHeart, CheckCircle } from 'lucide-react';
+
+const trustees = [
+  {
+    role: "अध्यक्ष",
+    name: "सीमा जैन",
+    address:
+      "D-49 बी, ललिता पार्क, शकरपुर एक्सटें., लक्ष्मी नगर, दिल्ली - 110092",
+    phone: "9625604001",
+  },
+  {
+    role: "महामंत्री",
+    name: "अंकित जैन ‘प्रिंस’",
+    address:
+      "पुलक निवास, 4/2771, गली नं. 3, बिहारी कॉलोनी, शाहदरा, दिल्ली - 32",
+    phone: "9810900699",
+  },
+  {
+    role: "कोषाध्यक्ष",
+    name: "संदीप जैन",
+    address: "मकान नं. 1154, सेक्टर-16, फरीदाबाद (हरि.)",
+    phone: "9810772312",
+  },
+  {
+    role: "ट्रस्टी",
+    name: "राजू व्यास",
+    address: "116, लख्मी की पोल, जोधपुर (राज.)",
+    phone: "9414243770",
+  },
+];
+
 
 export default function AboutPage() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#FFF9EF] via-[#FFE8B2] to-[#FFD580] text-[#3A0A00] py-24">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#FFF9EF] via-[#FFE8B2] to-[#FFD580] text-[#3A0A00]">
 
-      {/* Subtle Sacred Pattern */}
-      <div className="absolute inset-0 bg-[url('/swastik-pattern.png')] opacity-10 bg-cover bg-center"></div>
+      {/* ================= HERO ================= */}
+      <div className="relative min-h-[90vh] flex items-center justify-center text-center px-6 overflow-hidden bg-gradient-to-br from-amber-100 via-[#FFF3D6] to-amber-50">
 
-      {/* 🌺 HEADER */}
-      <motion.div
-        className="text-center relative z-10"
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <h1 className="text-5xl md:text-6xl font-serif text-[#8B0000] mb-6 drop-shadow-lg">
-          Vatsalya <span className="text-[#C45A00]">Dhara Trust</span>
-        </h1>
+        <div className="absolute w-[800px] h-[800px] bg-amber-300/30 rounded-full blur-3xl animate-[spin_80s_linear_infinite]"></div>
 
-        <p className="text-lg md:text-m max-w-3xl mx-auto text-[#4B2200] leading-relaxed">
-          <strong>Vatsalya Dhara Trust</strong> is devoted to serving humanity through
-          compassion, dignity, and selfless service. Rooted in the sacred values of
-          <em> Seva</em> and empathy, we transform care into action — uplifting
-          communities through sustainable humanitarian initiatives.
-        </p>
-      </motion.div>
+        <div className="relative z-10 max-w-4xl mx-auto">
 
-      {/* 🌿 Spiritual Foundation Section */}
-      <motion.div
-        className="relative z-10 flex flex-col items-center justify-center text-center mt-28 px-6"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-      >
-        <Image
-          src="/images/vatsalya.png"
-          alt="Vatsalya Logo"
-          width={200}
-          height={200}
-          className="rounded-full shadow-2xl object-contain mb-6"
-        />
-        <h3 className="text-2xl md:text-3xl text-[#8B0000] font-serif font-semibold">
-          A Sacred Flow of Compassion
-        </h3>
-        <p className="max-w-2xl mx-auto mt-3 text-[#4B2200] text-lg leading-relaxed">
-          Inspired by the philosophy of unconditional love and humanitarian
-          responsibility, Vatsalya Dhara Trust stands as a beacon of service —
-          nurturing lives through education, healthcare, relief support, and
-          community welfare.
-        </p>
-      </motion.div>
+          <Image
+            src="/images/vatsalya.png"
+            alt="Vatsalya Logo"
+            width={150}
+            height={150}
+            className="mx-auto mb-8"
+          />
+
+          {/* 🌺 HEADER */}
+          <motion.div
+            className="text-center relative z-10"
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-5xl md:text-6xl font-serif text-[#8B0000] mb-6 drop-shadow-lg">
+              Vatsalya <span className="text-[#C45A00]">Dhara Trust</span>
+            </h1>
+          </motion.div>
+
+          <p className="py-10 text-lg md:text-m max-w-3xl mx-auto text-[#4B2200] leading-relaxed">
+            <strong>Vatsalya Dhara Trust</strong> is devoted to serving humanity through
+            compassion, dignity, and selfless service. Rooted in the sacred values of
+            <em> Seva</em> and empathy, we transform care into action — uplifting
+            communities through sustainable humanitarian initiatives.
+          </p>
+          <Link
+            href="/donate"
+            className="inline-flex items-center gap-2 px-10 py-3 bg-amber-700 text-white rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition duration-300"
+          >
+            <HandHeart size={18} />
+            Support Our Mission
+          </Link>
+
+          {/* Trust Line + 80G Badge */}
+          <div className="mt-8 flex flex-col items-center gap-4">
+            {/* 80G Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1 }}
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full 
+                         bg-green-600 border border-green-400/40 
+                         backdrop-blur-md text-green-200 text-sm font-medium 
+                         shadow-[0_0_15px_rgba(34,197,94,0.4)]"
+            >
+              <CheckCircle size={16} className="text-green-300" />
+              Eligible for 80G Tax Exemption
+            </motion.div>
+          </div>
+
+          <div className="mt-6 text-amber-700 font-semibold tracking-widest">
+            सेवा • करुणा • मानवता
+          </div>
+        </div>
+      </div>
 
       {/* 👥 FOUNDERS */}
       <div className="relative max-w-7xl mx-auto mt-32 px-6 text-center z-10">
@@ -63,60 +110,17 @@ export default function AboutPage() {
         </div>
 
         <h2 className="text-4xl font-serif font-bold text-[#8B0000] mb-4">
-          Our Founders
+          Our Team
         </h2>
 
         <p className="text-lg text-[#4B2200] max-w-3xl mx-auto mb-16 leading-relaxed">
-          <strong>Ankit Jain "Prince"</strong> and <strong>Seema Jain </strong>
+          <strong>Seema Jain</strong> and <strong>Ankit Jain "Prince" </strong>
           envisioned Vatsalya Dhara Trust as a movement rooted in compassion,
           discipline, and spiritual responsibility — transforming faith into
           meaningful humanitarian action.
         </p>
 
         <div className="space-y-24">
-
-          {/* 🔹 ANKIT JAIN */}
-          <motion.div
-            className="flex flex-col md:flex-row items-center justify-between gap-10"
-            initial={{ opacity: 0, x: -80 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <Image
-              src="/images/founder.jpeg"
-              alt="Ankit Jain"
-              width={250}
-              height={250}
-              className="rounded-full border-[6px] border-[#C45A00] shadow-[0_10px_40px_-10px_rgba(196,90,0,0.6)] object-cover"
-            />
-
-            <div className="md:w-2/3 bg-gradient-to-b from-[#FFE8B2] to-[#FFD580] p-8 rounded-3xl border border-[#ECA400]/30 text-left shadow-md">
-              <h3 className="text-2xl font-serif text-[#8B0000] font-semibold mb-2">
-                Ankit Jain "Prince"
-              </h3>
-              <p className="text-sm uppercase tracking-wide text-[#C45A00] mb-4">
-                Founder & Managing Trustee
-              </p>
-
-              <p className="text-[#3A0A00] leading-relaxed text-justify">
-                A spiritually driven leader and humanitarian visionary,
-                Ankit Jain established Vatsalya Dhara Trust with the mission
-                of transforming compassion into structured social impact.
-              </p>
-
-              <p className="text-[#3A0A00] leading-relaxed text-justify">
-                Under his guidance, the Trust actively supports
-                <strong> food distribution drives, medical camps, emergency
-                services, animal welfare initiatives,</strong> and
-                community upliftment programs.
-              </p>
-
-              <p className="text-[#3A0A00] leading-relaxed text-justify">
-                His leadership embodies discipline, humility, and a deep belief
-                that service to humanity is the highest spiritual practice.
-              </p>
-            </div>
-          </motion.div>
 
           {/* 🔹 SEEMA JAIN */}
           <motion.div
@@ -138,7 +142,7 @@ export default function AboutPage() {
                 Seema Jain
               </h3>
               <p className="text-sm uppercase tracking-wide text-[#C45A00] mb-4">
-                Co-Founder & Director
+                President
               </p>
 
               <p className="text-[#3A0A00] leading-relaxed text-justify">
@@ -158,6 +162,129 @@ export default function AboutPage() {
               </p>
             </div>
           </motion.div>
+
+          {/* 🔹 ANKIT JAIN */}
+          <motion.div
+            className="flex flex-col md:flex-row items-center justify-between gap-10"
+            initial={{ opacity: 0, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <Image
+              src="/images/founder.jpeg"
+              alt="Ankit Jain"
+              width={250}
+              height={250}
+              className="rounded-full border-[6px] border-[#C45A00] shadow-[0_10px_40px_-10px_rgba(196,90,0,0.6)] object-cover"
+            />
+
+            <div className="md:w-2/3 bg-gradient-to-b from-[#FFE8B2] to-[#FFD580] p-8 rounded-3xl border border-[#ECA400]/30 text-left shadow-md">
+              <h3 className="text-2xl font-serif text-[#8B0000] font-semibold mb-2">
+                Ankit Jain <span className="text-[#C45A00] italic">"Prince"</span>
+              </h3>
+              <p className="text-sm uppercase tracking-wide text-[#C45A00] mb-4">
+                Secratary
+              </p>
+
+              <p className="text-[#3A0A00] leading-relaxed text-justify">
+                A spiritually driven leader and humanitarian visionary,
+                Ankit Jain established Vatsalya Dhara Trust with the mission
+                of transforming compassion into structured social impact.
+              </p>
+
+              <p className="text-[#3A0A00] leading-relaxed text-justify">
+                Under his guidance, the Trust actively supports
+                <strong> food distribution drives, medical camps, emergency
+                services, animal welfare initiatives,</strong> and
+                community upliftment programs.
+              </p>
+
+              <p className="text-[#3A0A00] leading-relaxed text-justify">
+                His leadership embodies discipline, humility, and a deep belief
+                that service to humanity is the highest spiritual practice.
+              </p>
+            </div>
+          </motion.div>
+          {/* 🔹 SANDEEP JAIN */}
+          <motion.div
+            className="flex flex-col md:flex-row-reverse items-center justify-between gap-10"
+            initial={{ opacity: 0, x: 80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <Image
+              src="/images/sandeep.jpeg"   // 👈 add his image in public/images
+              alt="Sandeep Jain"
+              width={250}
+              height={250}
+              className="rounded-full border-[6px] border-[#C45A00] shadow-[0_10px_40px_-10px_rgba(196,90,0,0.6)] object-cover"
+            />
+
+            <div className="md:w-2/3 bg-gradient-to-b from-[#FFE8B2] to-[#FFD580] p-8 rounded-3xl border border-[#ECA400]/30 text-left shadow-md">
+              <h3 className="text-2xl font-serif text-[#8B0000] font-semibold mb-2">
+                <span className="text-[#C45A00] italic">CA</span> Sandeep Jain
+              </h3>
+
+              <p className="text-[#3A0A00] leading-relaxed text-justify">
+                A qualified Chartered Accountant and Advocate, Sandeep Jain
+                strengthens the Trust with financial discipline and legal
+                compliance expertise.
+              </p>
+
+              <p className="text-[#3A0A00] leading-relaxed text-justify">
+                He ensures transparency in governance, structured financial
+                management, and ethical operational practices across all
+                humanitarian initiatives.
+              </p>
+
+              <p className="text-[#3A0A00] leading-relaxed text-justify">
+                His professional guidance supports sustainable growth,
+                accountability, and regulatory integrity — forming the backbone
+                of the Trust’s responsible administration.
+              </p>
+            </div>
+          </motion.div>
+          {/* 🔹 RAJU VYAS */}
+          <motion.div
+            className="flex flex-col md:flex-row items-center justify-between gap-10"
+            initial={{ opacity: 0, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <Image
+              src="/images/raju.jpeg"   // 👈 add his image in public/images
+              alt="Raju Vyas"
+              width={250}
+              height={250}
+              className="rounded-full border-[6px] border-[#C45A00] shadow-[0_10px_40px_-10px_rgba(196,90,0,0.6)] object-cover"
+            />
+
+            <div className="md:w-2/3 bg-gradient-to-b from-[#FFE8B2] to-[#FFD580] p-8 rounded-3xl border border-[#ECA400]/30 text-left shadow-md">
+              <h3 className="text-2xl font-serif text-[#8B0000] font-semibold mb-2">
+                Raju Vyas
+              </h3>
+              <p className="text-sm uppercase tracking-wide text-[#C45A00] mb-4">
+                Trustee
+              </p>
+
+              <p className="text-[#3A0A00] leading-relaxed text-justify">
+                A dedicated social worker based in Jodhpur, Raju Vyas plays a
+                vital role in expanding the Trust’s grassroots outreach.
+              </p>
+
+              <p className="text-[#3A0A00] leading-relaxed text-justify">
+                He actively supports community welfare programs, relief efforts,
+                and humanitarian activities — ensuring timely assistance to those
+                in need.
+              </p>
+
+              <p className="text-[#3A0A00] leading-relaxed text-justify">
+                His deep local engagement and service-oriented mindset help
+                strengthen Vatsalya Dhara’s mission of compassion across regions.
+              </p>
+            </div>
+          </motion.div>
+
         </div>
       </div>
 
@@ -191,6 +318,52 @@ export default function AboutPage() {
             we strive to create lasting change rooted in compassion,
             responsibility, and collective effort.
           </p>
+        </div>
+      </motion.div>
+
+      {/* 👥 BOARD OF TRUSTEES */}
+      <motion.div
+        className="relative max-w-7xl mx-auto mt-28 px-6 z-10"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <div className="text-center mb-14">
+          <h2 className="text-4xl font-serif font-bold text-[#8B0000] mb-3">
+            Board of Trustees
+          </h2>
+          <p className="text-[#4B2200] max-w-3xl mx-auto">
+            Dedicated individuals guiding the mission of Vatsalya Dhara Trust with
+            transparency, responsibility, and compassion.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-4 gap-8">
+          {trustees.map((t) => (
+            <div
+              key={t.name}
+              className="bg-gradient-to-br from-[#FFF8E1] to-[#FFE8B2] p-6 rounded-2xl border border-[#ECA400]/40 shadow-lg text-center hover:shadow-2xl hover:scale-[1.03] transition"
+            >
+              <p className="text-sm text-[#C45A00] font-semibold mb-1">
+                {t.role}
+              </p>
+
+              <h3 className="text-lg font-serif font-semibold text-[#8B0000] mb-3">
+                {t.name}
+              </h3>
+
+              <p className="text-sm text-[#3A0A00] leading-relaxed mb-4 text-justify">
+                {t.address}
+              </p>
+
+              <a
+                href={`tel:${t.phone}`}
+                className="inline-block bg-[#FFD580] px-4 py-2 rounded-full text-sm font-medium hover:scale-105 transition"
+              >
+                📞 {t.phone}
+              </a>
+            </div>
+          ))}
         </div>
       </motion.div>
 
@@ -233,7 +406,7 @@ export default function AboutPage() {
 
       {/* ✨ CTA */}
       <motion.div
-        className="text-center mt-24 relative z-10"
+        className="py-20 text-center mt-24 relative z-10"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -249,7 +422,7 @@ export default function AboutPage() {
 
         <div className="flex justify-center gap-6 flex-wrap">
           <Link
-            href="/gallery"
+            href="/our-work"
             className="inline-block px-8 py-3 bg-gradient-to-r from-[#FBBF24] to-[#F59E0B] text-[#3A0A00] font-semibold rounded-full shadow-lg hover:scale-110 transition-transform"
           >
             View Our Work →

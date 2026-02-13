@@ -3,6 +3,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Script from "next/script";
 import type { Metadata } from "next";
+import NewsTicker from "@/components/NewsTicker";
+import BackToTop from "@/components/BackToTop";
 
 export const metadata: Metadata = {
   title: "Vatsalya Dhara Trust",
@@ -23,6 +25,7 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col font-sans bg-[#FFF8E7] text-[#4B1E00]">
 
         <Navbar />
+        <NewsTicker />
 
         {/* MAIN CONTENT */}
         <main className="flex-1">
@@ -35,6 +38,7 @@ export default function RootLayout({
           src="https://checkout.razorpay.com/v1/checkout.js"
           strategy="afterInteractive"
         />
+        <BackToTop />
       </body>
     </html>
   );

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import {
   Heart,
   BookOpen,
@@ -12,6 +13,7 @@ import {
   HandHeart,
   Sparkles,
   ShieldCheck,
+  CheckCircle,
 } from "lucide-react";
 
 export default function WhatWeDoPage() {
@@ -33,9 +35,17 @@ export default function WhatWeDoPage() {
             className="mx-auto mb-8"
           />
 
-          <h1 className="text-5xl md:text-6xl font-serif font-semibold mb-6">
-            Compassion in Action
-          </h1>
+          {/* 🌺 HEADER */}
+          <motion.div
+            className="text-center relative z-10"
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-5xl md:text-6xl font-serif text-[#8B0000] mb-6 drop-shadow-lg">
+              Compassion <span className="text-[#C45A00]">in Action</span>
+            </h1>
+          </motion.div>
 
           <p className="text-xl text-[#3B1D00]/80 mb-6">
             Serving Humanity Through Seva, Integrity & Dedication
@@ -54,6 +64,23 @@ export default function WhatWeDoPage() {
             <HandHeart size={18} />
             Support Our Mission
           </Link>
+
+          {/* Trust Line + 80G Badge */}
+          <div className="mt-8 flex flex-col items-center gap-4">
+            {/* 80G Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1 }}
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full 
+                         bg-green-600 border border-green-400/40 
+                         backdrop-blur-md text-green-200 text-sm font-medium 
+                         shadow-[0_0_15px_rgba(34,197,94,0.4)]"
+            >
+              <CheckCircle size={16} className="text-green-300" />
+              Eligible for 80G Tax Exemption
+            </motion.div>
+          </div>
 
           <div className="mt-6 text-amber-700 font-semibold tracking-widest">
             सेवा • करुणा • मानवता

@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { MapPin, Phone, Mail } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 import FloatingParticles from "@/components/FloatingParticles";
+import { MapPin, Phone, CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
+
 
 export default function Footer() {
   return (
@@ -29,7 +31,7 @@ export default function Footer() {
                 className="w-16 h-16 object-contain drop-shadow-lg"
               />
               <h2 className="text-2xl font-serif font-semibold text-yellow-400">
-                Vatsalya Dhara Trust
+                Vatsalya Dhara Trust (Regd.)
               </h2>
             </div>
 
@@ -93,7 +95,7 @@ export default function Footer() {
                 <MapPin size={18} className="text-yellow-400 mt-1" />
                 <p className="leading-relaxed">
                   Vatsalya Bhawan, P-75, Street No. 5,
-                  Bihari Colony Extension, Shahdara,
+                  Bihari Colony Extension, Bihari Colony, Shahdara,
                   Delhi – 110032
                 </p>
               </div>
@@ -116,17 +118,29 @@ export default function Footer() {
                 <span className="relative z-10">
                   ❤️ Support Our Sacred Mission
                 </span>
-
-                {/* Golden Glow Effect */}
                 <span className="absolute inset-0 rounded-2xl bg-yellow-400 blur-xl opacity-0 group-hover:opacity-40 transition duration-500"></span>
               </Link>
             </div>
           </div>
-
         </div>
-
         {/* ================= DIVIDER ================= */}
         <div className="mt-20 border-t border-yellow-500/20 pt-8 text-center text-sm text-[#FFE9C4]/80">
+          {/* Trust Line + 80G Badge */}
+          <div className="flex justify-center mb-6">
+            {/* 80G Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1 }}
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full 
+                         bg-green-600/20 border border-green-400/40 
+                         backdrop-blur-md text-green-200 text-sm font-medium 
+                         shadow-[0_0_15px_rgba(34,197,94,0.4)]"
+            >
+              <CheckCircle size={16} className="text-green-300" />
+              Eligible for 80G Tax Exemption
+            </motion.div>
+          </div>
           <p>
             © {new Date().getFullYear()} Vatsalya Dhara Trust • Serving Humanity
           </p>
@@ -134,7 +148,6 @@ export default function Footer() {
             सेवा • करुणा • मानवता
           </p>
         </div>
-
       </div>
     </footer>
   );

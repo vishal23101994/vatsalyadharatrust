@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { CheckCircle } from "lucide-react";
+
 import {
   Heart,
   Users,
@@ -37,35 +39,6 @@ export default function VatsalyaDharaPage() {
     qrPath: "/images/vatsalya_qr.jpeg",
     upiId: "",
   };
-
-  const trustees = [
-    {
-      role: "अध्यक्ष",
-      name: "सीमा जैन",
-      address:
-        "D-49 बी, ललिता पार्क, शकरपुर एक्सटें., लक्ष्मी नगर, दिल्ली - 110092",
-      phone: "9625604001",
-    },
-    {
-      role: "महामंत्री",
-      name: "अंकित जैन ‘प्रिंस’",
-      address:
-        "पुलक निवास, 4/2771, गली नं. 3, बिहारी कॉलोनी, शाहदरा, दिल्ली - 32",
-      phone: "9810900699",
-    },
-    {
-      role: "कोषाध्यक्ष",
-      name: "संदीप जैन",
-      address: "मकान नं. 1154, सेक्टर-16, फरीदाबाद (हरि.)",
-      phone: "9810772312",
-    },
-    {
-      role: "ट्रस्टी",
-      name: "राजू व्यास",
-      address: "116, लख्मी की पोल, जोधपुर (राज.)",
-      phone: "9414243770",
-    },
-  ];
 
   const [activeVideo, setActiveVideo] = useState<number | null>(null);
 
@@ -130,13 +103,20 @@ export default function VatsalyaDharaPage() {
             className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight"
           >
             <span className="block">Serving Humanity</span>
+
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
               className="block text-amber-400"
             >
-              With Compassion & Care
+              <span className="text-xl md:text-3xl xl:text-4xl font-medium block">
+                With
+              </span>
+
+              <span className="block">
+                "Compassion & Care"
+              </span>
             </motion.span>
           </motion.h1>
 
@@ -180,9 +160,26 @@ export default function VatsalyaDharaPage() {
             </a>
           </motion.div>
 
-          {/* Trust Line */}
-          <div className="mt-8 text-sm text-gray-300 tracking-wide">
-            Registered Trust • Transparent • Community Driven
+          {/* Trust Line + 80G Badge */}
+          <div className="mt-8 flex flex-col items-center gap-4">
+
+            <div className="text-sm text-gray-300 tracking-wide">
+              Registered Trust • Transparent • Community Driven
+            </div>
+
+            {/* 80G Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1 }}
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full 
+                         bg-green-600/20 border border-green-400/40 
+                         backdrop-blur-md text-green-200 text-sm font-medium 
+                         shadow-[0_0_15px_rgba(34,197,94,0.4)]"
+            >
+              <CheckCircle size={16} className="text-green-300" />
+              Eligible for 80G Tax Exemption
+            </motion.div>
           </div>
         </div>
       </header>
@@ -608,43 +605,6 @@ export default function VatsalyaDharaPage() {
               <span className="bg-amber-100 px-3 py-1 rounded-full text-sm">Gau Seva</span>
               <span className="bg-amber-100 px-3 py-1 rounded-full text-sm">Ambulance</span>
             </div>
-          </div>
-        </motion.section>
-
-        {/* TRUSTEE SECTION */}
-        <motion.section
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="bg-white/70 backdrop-blur-md p-8 rounded-2xl shadow-lg border border-amber-200"
-        >
-          <h2 className="text-3xl md:text-4xl font-serif font-semibold text-center mb-10">
-            Vatsalya Dhara Trust (Regd.)
-          </h2>
-
-          <div className="grid md:grid-cols-4 gap-6">
-            {trustees.map((t) => (
-              <div
-                key={t.name}
-                className="bg-amber-50 p-5 rounded-xl border border-amber-200 shadow-sm text-center"
-              >
-                <p className="text-sm text-amber-700 font-semibold mb-1">
-                  {t.role}
-                </p>
-                <h3 className="text-lg font-semibold mb-2">{t.name}</h3>
-
-                <p className="text-sm text-[#4B1E00]/80 leading-relaxed mb-3">
-                  {t.address}
-                </p>
-
-                <a
-                  href={`tel:${t.phone}`}
-                  className="inline-block bg-amber-100 px-3 py-1 rounded-full text-sm font-medium"
-                >
-                  📞 {t.phone}
-                </a>
-              </div>
-            ))}
           </div>
         </motion.section>
 

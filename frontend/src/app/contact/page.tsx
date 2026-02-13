@@ -69,7 +69,7 @@ export default function ContactPage() {
         className="relative z-10 text-center mb-10"
       >
         <h1 className="font-serif text-5xl text-yellow-400 mb-4 drop-shadow-md">
-          Contact Vatsalya Dhara Trust
+          Contact Us
         </h1>
         <p className="text-[#FFE9C4]/80 max-w-2xl mx-auto">
           Every connection strengthens the flow of compassion.
@@ -192,8 +192,8 @@ export default function ContactPage() {
             </div>
             <p className="text-sm">
               Shahdara Metro – ~1.2 km <br />
-              Welcome Metro – ~2.3 km <br />
-              East Azad Nagar – ~2.0 km
+              Welcome Metro – ~800 m <br />
+              East Azad Nagar – ~1.0 km
             </p>
           </div>
 
@@ -221,10 +221,9 @@ export default function ContactPage() {
             </div>
             <p className="text-sm">
               Bihari Colony Bus Stop <br />
-              Walking distance • 2–3 minutes
+              Walking distance • 5–10 minutes
             </p>
           </div>
-
         </div>
       </motion.section>
 
