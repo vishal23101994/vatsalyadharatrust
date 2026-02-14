@@ -16,7 +16,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 
-export default function WhatWeDoPage() {
+export default function OurMissionPage() {
   return (
     <section className="bg-[#FCFAF6] text-[#3B1D00] overflow-hidden">
 
@@ -43,7 +43,7 @@ export default function WhatWeDoPage() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-5xl md:text-6xl font-serif text-[#8B0000] mb-6 drop-shadow-lg">
-              Compassion <span className="text-[#C45A00]">in Action</span>
+              Our <span className="text-[#C45A00]">Mission</span>
             </h1>
           </motion.div>
 
@@ -52,9 +52,9 @@ export default function WhatWeDoPage() {
           </p>
 
           <p className="text-lg text-[#3B1D00]/70 max-w-3xl mx-auto mb-8 leading-relaxed">
-            At Vatsalya Dhara Trust, our initiatives are rooted in spiritual compassion 
-            and guided by structured planning. Every program we run is designed not just 
-            to provide immediate relief, but to create sustainable impact and restore dignity.
+            At Vatsalya Dhara Trust, our mission is to serve humanity with unwavering compassion and structured action.
+            We aim to uplift lives through food security, healthcare access, education, emergency services, and spiritual care —
+            ensuring dignity, support, and hope for every individual we touch.
           </p>
 
           <Link
@@ -180,6 +180,19 @@ export default function WhatWeDoPage() {
                 title: "Elderly & Orphan Support",
                 desc: "Holistic support programs offering care, dignity, and security for vulnerable individuals.",
               },
+              {
+                img: "/images/kanyadaan1.jpeg", // add proper image
+                icon: <Heart className="text-rose-600" size={32} />,
+                title: "Nirdhan Kanyaa Ka Vivah",
+                desc: "Supporting underprivileged families in organizing dignified marriages for their daughters. We assist with essential arrangements, ensuring respect, cultural integrity, and a hopeful beginning to a new life journey.",
+              },
+              {
+                img: "/images/library1.jpeg", // add proper image
+                icon: <BookOpen className="text-indigo-600" size={32} />,
+                title: "Maa Jinvani Sangrahlaya",
+                desc: "A dedicated library initiative for underprivileged children, providing access to educational books, spiritual literature, and learning resources to nurture knowledge, values, and character development.",
+              },
+
             ].map((item, i) => (
               <Link
                 key={i}

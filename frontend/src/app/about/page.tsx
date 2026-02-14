@@ -17,19 +17,19 @@ const trustees = [
     role: "महामंत्री",
     name: "अंकित जैन ‘प्रिंस’",
     address:
-      "पुलक निवास, 4/2771, गली नं. 3, बिहारी कॉलोनी, शाहदरा, दिल्ली - 32",
+      "पुलक निवास, 4/2771, गली नं. 3, बिहारी कॉलोनी, शाहदरा, दिल्ली - 110032",
     phone: "9810900699",
   },
   {
     role: "कोषाध्यक्ष",
     name: "संदीप जैन",
-    address: "मकान नं. 1154, सेक्टर-16, फरीदाबाद (हरि.)",
+    address: "मकान नं. 1154, सेक्टर-16, फरीदाबाद, हरियाणा",
     phone: "9810772312",
   },
   {
     role: "ट्रस्टी",
     name: "राजू व्यास",
-    address: "116, लख्मी की पोल, जोधपुर (राज.)",
+    address: "116, लख्मी की पोल, जोधपुर, राजस्थान",
     phone: "9414243770",
   },
 ];
@@ -62,7 +62,7 @@ export default function AboutPage() {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-5xl md:text-6xl font-serif text-[#8B0000] mb-6 drop-shadow-lg">
-              Vatsalya <span className="text-[#C45A00]">Dhara Trust</span>
+              Vatsalya <span className="text-[#C45A00]">Dhara Trust (Regd.)</span>
             </h1>
           </motion.div>
 
@@ -224,6 +224,9 @@ export default function AboutPage() {
               <h3 className="text-2xl font-serif text-[#8B0000] font-semibold mb-2">
                 <span className="text-[#C45A00] italic">CA</span> Sandeep Jain
               </h3>
+              <p className="text-sm uppercase tracking-wide text-[#C45A00] mb-4">
+                Treasurer
+              </p>
 
               <p className="text-[#3A0A00] leading-relaxed text-justify">
                 A qualified Chartered Accountant and Advocate, Sandeep Jain
@@ -352,7 +355,7 @@ export default function AboutPage() {
                 {t.name}
               </h3>
 
-              <p className="text-sm text-[#3A0A00] leading-relaxed mb-4 text-justify">
+              <p className="text-sm text-[#3A0A00] leading-relaxed mb-4">
                 {t.address}
               </p>
 

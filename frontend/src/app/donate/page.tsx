@@ -29,7 +29,7 @@ export default function Donate() {
     ifsc: "UTIB0005638",
     pan: "AABTV5574B",
     bankName: "AXIS BANK Ltd.",
-    branch: "BHOLANATH NAGAR, DELHI",
+    branch: "Bholanath Nagar, Delhi - 110032",
     qrPath: "/images/vatsalya_qr.jpeg",
     upiId: "", // add UPI ID here if available
   };
@@ -380,6 +380,19 @@ export default function Donate() {
 
                 <p className="text-sm"><strong>Bank:</strong> {donation.bankName}</p>
                 <p className="text-sm"><strong>Branch:</strong> {donation.branch}</p>
+                {/* 80G Badge */}
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-full 
+                             bg-green-600/20 border border-green-400/40 
+                             text-green-700 text-sm font-medium 
+                             shadow-[0_0_15px_rgba(34,197,94,0.4)]"
+                >
+                  <CheckCircle size={16} className="text-green-600" />
+                  Eligible for 80G Tax Exemption
+                </motion.div>
               </div>
             </div>
 

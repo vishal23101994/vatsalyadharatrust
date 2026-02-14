@@ -6,68 +6,54 @@ import FloatingParticles from "@/components/FloatingParticles";
 import { MapPin, Phone, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
-
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-br from-[#6B0C0C] via-[#4E0808] to-[#2A0404] text-[#FFE9C4]">
+    <footer className="relative overflow-hidden 
+      bg-gradient-to-br from-[#5A0B0B] via-[#3E0707] to-[#1B0202] 
+      text-[#FFE9C4]">
 
-      {/* Floating Aura Particles */}
-      <FloatingParticles count={15} />
+      <FloatingParticles count={12} />
 
-      {/* Golden Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,215,120,0.18),transparent_60%)] pointer-events-none" />
+      {/* Soft golden aura */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,215,120,0.18),transparent_65%)] pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-6 py-24">
+      <div className="relative max-w-7xl mx-auto px-6 py-16">
 
-        {/* ================= MAIN GRID ================= */}
-        <div className="grid md:grid-cols-3 gap-16">
+        {/* ================= TOP HEADING ================= */}
+        <div className="mb-12">
 
-          {/* ===== BRAND SECTION ===== */}
-          <div className="space-y-6">
-            <div className="flex items-center gap-4">
-              <img
-                src="/images/vatsalya.png"
-                alt="Vatsalya Logo"
-                className="w-16 h-16 object-contain drop-shadow-lg"
-              />
-              <h2 className="text-2xl font-serif font-semibold text-yellow-400">
-                Vatsalya Dhara Trust (Regd.)
-              </h2>
-            </div>
-
-            <p className="text-sm leading-relaxed text-[#FFE8C6]/90">
-              Rooted in the sacred philosophy of Seva, Vatsalya Dhara Trust
-              works tirelessly to uplift communities through compassion,
-              dignity, and sustainable humanitarian initiatives.
-            </p>
-
-            {/* Instagram */}
-            <a
-              href="https://www.instagram.com/vatsalya_dhara/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 group"
-            >
-              <div className="p-3 rounded-full bg-white/10 border border-yellow-400/30 group-hover:scale-110 transition duration-300">
-                <FaInstagram size={18} className="text-yellow-400" />
-              </div>
-              <span className="text-sm group-hover:text-yellow-300 transition">
-                Follow us on Instagram
-              </span>
-            </a>
+          <div className="flex items-center gap-4">
+            <img
+              src="/images/vatsalya.png"
+              alt="Vatsalya Logo"
+              className="w-14 h-14 object-contain drop-shadow-lg"
+            />
+            <h2 className="text-2xl md:text-2xl font-serif font-semibold text-yellow-400 tracking-wide">
+              Vatsalya Dhara Trust (Regd.)
+            </h2>
           </div>
 
-          {/* ===== QUICK LINKS ===== */}
+          <p className="mt-2 text-sm md:text-base text-[#FFE9C4]/80 whitespace-nowrap overflow-hidden text-ellipsis">
+            Rooted in the sacred philosophy of Seva — uplifting lives through compassion, dignity & sustainable humanitarian service.
+          </p>
+
+        </div>
+
+        {/* ================= MIDDLE SECTION ================= */}
+        <div className="grid md:grid-cols-2 gap-16">
+
+          {/* LEFT SIDE */}
           <div>
-            <h4 className="text-lg font-semibold text-yellow-400 mb-6">
+
+            <h4 className="text-yellow-400 font-semibold mb-6 tracking-wide">
               Quick Links
             </h4>
 
-            <div className="space-y-3 text-sm">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-4 gap-x-8 text-sm mb-8">
               {[
                 { name: "Home", href: "/" },
                 { name: "About Us", href: "/about" },
-                { name: "What We Do", href: "/what-we-do" },
+                { name: "Our Mission", href: "/our-mission" },
                 { name: "Our Work", href: "/our-work" },
                 { name: "Contact", href: "/contact" },
                 { name: "Donate", href: "/donate" },
@@ -75,79 +61,99 @@ export default function Footer() {
                 <Link
                   key={i}
                   href={item.href}
-                  className="block hover:text-yellow-300 transition duration-300 hover:translate-x-2"
+                  className="relative w-fit hover:text-yellow-300 transition duration-300 group"
                 >
                   {item.name}
+
+                  {/* Premium underline animation */}
+                  <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-yellow-400 transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               ))}
             </div>
+
+
+            {/* Instagram */}
+            <a
+              href="https://www.instagram.com/vatsalya_dhara/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 text-sm group"
+            >
+              <FaInstagram size={16} className="text-yellow-400" />
+              <span className="group-hover:text-yellow-300 transition">
+                Follow us on Instagram
+              </span>
+            </a>
+
           </div>
 
-          {/* ===== CONTACT + DONATE ===== */}
-          <div>
-            <h4 className="text-lg font-semibold text-yellow-400 mb-6">
-              Contact Information
-            </h4>
+          {/* RIGHT SIDE */}
+          <div className="text-sm space-y-6">
 
-            <div className="space-y-5 text-sm">
+            <div className="flex gap-3">
+              <MapPin size={18} className="text-yellow-400 mt-1" />
+              <p>
+                Vatsalya Bhawan, P-75, Street No. 5,  
+                Bihari Colony Extension, Bihari Colony, Shahdara, Delhi – 110032
+              </p>
+            </div>
 
-              <div className="flex gap-3">
-                <MapPin size={18} className="text-yellow-400 mt-1" />
-                <p className="leading-relaxed">
-                  Vatsalya Bhawan, P-75, Street No. 5,
-                  Bihari Colony Extension, Bihari Colony, Shahdara,
-                  Delhi – 110032
-                </p>
-              </div>
-
-              <div className="flex gap-3">
-                <Phone size={18} className="text-yellow-400 mt-1" />
-                <div>
-                  <p>+91 9910987666</p>
-                  <p>+91 9810900699</p>
-                </div>
+            <div className="flex gap-3">
+              <Phone size={18} className="text-yellow-400 mt-1" />
+              <div>
+                <p>+91 9910987666</p>
+                <p>+91 9810900699</p>
               </div>
             </div>
 
-            {/* PREMIUM DONATE BUTTON */}
-            <div className="mt-10">
+            {/* Premium Donate Button */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="pt-2"
+            >
               <Link
                 href="/donate"
-                className="group relative inline-flex items-center justify-center w-full px-10 py-4 rounded-2xl font-semibold text-[#4B1E00] bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-yellow-500/40"
+                className="inline-flex items-center gap-2 px-10 py-4 
+                  rounded-full font-semibold text-[#4B1E00]
+                  bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600
+                  shadow-[0_10px_30px_rgba(255,215,120,0.4)]
+                  hover:shadow-[0_10px_40px_rgba(255,215,120,0.7)]
+                  transition duration-300"
               >
-                <span className="relative z-10">
-                  ❤️ Support Our Sacred Mission
-                </span>
-                <span className="absolute inset-0 rounded-2xl bg-yellow-400 blur-xl opacity-0 group-hover:opacity-40 transition duration-500"></span>
+                ❤️ Support Our Mission
               </Link>
-            </div>
+            </motion.div>
+
           </div>
         </div>
-        {/* ================= DIVIDER ================= */}
-        <div className="mt-20 border-t border-yellow-500/20 pt-8 text-center text-sm text-[#FFE9C4]/80">
-          {/* Trust Line + 80G Badge */}
-          <div className="flex justify-center mb-6">
-            {/* 80G Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-full 
-                         bg-green-600/20 border border-green-400/40 
-                         backdrop-blur-md text-green-200 text-sm font-medium 
-                         shadow-[0_0_15px_rgba(34,197,94,0.4)]"
-            >
-              <CheckCircle size={16} className="text-green-300" />
-              Eligible for 80G Tax Exemption
-            </motion.div>
-          </div>
-          <p>
+
+        {/* ================= BOTTOM ================= */}
+        <div className="mt-14 border-t border-yellow-500/30 pt-8 text-center">
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="inline-flex items-center gap-2 px-6 py-2 rounded-full 
+              bg-green-600/20 border border-green-400/40 
+              text-green-200 text-xs font-medium 
+              shadow-[0_0_20px_rgba(34,197,94,0.4)] mb-5"
+          >
+            <CheckCircle size={14} />
+            Eligible for 80G Tax Exemption
+          </motion.div>
+
+          <p className="text-sm">
             © {new Date().getFullYear()} Vatsalya Dhara Trust • Serving Humanity
           </p>
-          <p className="mt-3 text-yellow-400 tracking-widest font-semibold">
+
+          <p className="mt-3 text-yellow-400 tracking-widest font-semibold text-xs">
             सेवा • करुणा • मानवता
           </p>
+
         </div>
+
       </div>
     </footer>
   );

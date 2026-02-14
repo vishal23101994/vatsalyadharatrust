@@ -14,6 +14,8 @@ import {
   Phone,
   ClipboardCopy,
   Download,
+  BookMarked,
+  Gift,
 } from "lucide-react";
 
 /**
@@ -35,7 +37,7 @@ export default function VatsalyaDharaPage() {
     ifsc: "UTIB0005638",
     pan: "AABTV5574B",
     bankName: "AXIS BANK Ltd.",
-    branch: "BHOLANATH NAGAR, DELHI",
+    branch: "Bholanath Nagar, Delhi - 110032",
     qrPath: "/images/vatsalya_qr.jpeg",
     upiId: "",
   };
@@ -434,146 +436,84 @@ export default function VatsalyaDharaPage() {
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="grid md:grid-cols-3 gap-6"
+          className="grid md:grid-cols-3 gap-8"
         >
-          <motion.div
-            whileHover={{ y: -10 }}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="group bg-white/70 backdrop-blur-xl p-6 rounded-2xl border border-amber-200 shadow-lg hover:shadow-2xl transition-all duration-500"
-          >
-            <img
-              src="/images/youth.jpg"
-              alt="Youth Empowerment"
-              className="w-full h-52 object-cover rounded-xl mb-4 group-hover:scale-105 transition duration-500"
-            />
+          {[
+            {
+              img: "/images/youth.jpg",
+              icon: <Users size={26} className="text-amber-600" />,
+              title: "Youth Empowerment",
+              desc: "Leadership, discipline, and value-based education programs for youth.",
+            },
+            {
+              img: "/images/education.jpeg",
+              icon: <BookOpen size={26} className="text-indigo-600" />,
+              title: "Education Support",
+              desc: "Free education, book distribution drives and preservation of Jain literature.",
+            },
+            {
+              img: "/images/healthcamp.jpeg",
+              icon: <Activity size={26} className="text-green-600" />,
+              title: "Free Health Camps",
+              desc: "Medical checkups, free medicines and healthcare awareness programs.",
+            },
+            {
+              img: "/images/ambulance.jpeg",
+              icon: <Truck size={26} className="text-blue-600" />,
+              title: "Ambulance Service",
+              desc: "Quick-response ambulance assistance ensuring timely medical support.",
+            },
+            {
+              img: "/images/animals.jpeg",
+              icon: <Layers size={26} className="text-amber-700" />,
+              title: "Gau Seva & Animal Care",
+              desc: "Cow shelters, bird feeding, and compassion for all living beings.",
+            },
+            {
+              img: "/images/elderly.jpeg",
+              icon: <Heart size={26} className="text-rose-600" />,
+              title: "Elderly & Orphan Support",
+              desc: "Shelter, dignity and regular care for senior citizens and orphaned children.",
+            },
+            {
+              img: "/images/kanyadaan1.jpeg",
+              icon: <Gift size={26} className="text-pink-600" />,
+              title: "Nirdhan Kanyaa Ka Vivah",
+              desc: "Supporting dignified marriages for underprivileged daughters with essential arrangements.",
+            },
+            {
+              img: "/images/library1.jpeg",
+              icon: <BookOpen size={26} className="text-purple-600" />,
+              title: "Maa Jinvani Sangrahlaya",
+              desc: "A dedicated library initiative providing spiritual and educational resources to needy children.",
+            },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ y: -8 }}
+              className="group bg-white/70 backdrop-blur-xl p-6 rounded-3xl 
+                         border border-amber-200 shadow-lg 
+                         hover:shadow-2xl transition-all duration-500"
+            >
+              <img
+                src={item.img}
+                alt={item.title}
+                className="w-full h-52 object-cover rounded-xl mb-5 
+                           group-hover:scale-105 transition duration-500"
+              />
 
-            <div className="flex items-center gap-3 mb-3">
-              <Users size={26} className="text-amber-600 group-hover:scale-110 transition" />
-              <h3 className="text-xl font-semibold">Youth Empowerment</h3>
-            </div>
+              <div className="flex items-center gap-3 mb-3">
+                {item.icon}
+                <h3 className="text-xl font-semibold">{item.title}</h3>
+              </div>
 
-            <p className="text-[#4B1E00]/90 text-justify">
-              Leadership, discipline, and value-based education programs for youth.
-            </p>
-          </motion.div>
-
-          <motion.div
-            whileHover={{ y: -10 }}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="group bg-white/70 backdrop-blur-xl p-6 rounded-2xl border border-amber-200 shadow-lg hover:shadow-2xl transition-all duration-500"
-          >
-            <img
-              src="/images/education.jpeg"
-              alt="Education"
-              className="w-full h-52 object-cover rounded-xl mb-4 group-hover:scale-105 transition duration-500"
-            />
-
-            <div className="flex items-center gap-3 mb-3">
-              <Users size={26} className="text-amber-600 group-hover:scale-110 transition" />
-              <h3 className="text-xl font-semibold">Education</h3>
-            </div>
-
-            <p className="text-[#4B1E00]/90 text-justify">
-              Free education for underprivileged children, book donation drives, and Jain library preservation.
-            </p>
-          </motion.div>
-
-          <motion.div
-            whileHover={{ y: -10 }}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="group bg-white/70 backdrop-blur-xl p-6 rounded-2xl border border-amber-200 shadow-lg hover:shadow-2xl transition-all duration-500"
-          >
-            <img
-              src="/images/healthcamp.jpeg"
-              alt="Education"
-              className="w-full h-52 object-cover rounded-xl mb-4 group-hover:scale-105 transition duration-500"
-            />
-
-            <div className="flex items-center gap-3 mb-3">
-              <Users size={26} className="text-amber-600 group-hover:scale-110 transition" />
-              <h3 className="text-xl font-semibold">Free Health Camps</h3>
-            </div>
-
-            <p className="text-[#4B1E00]/90 text-justify">
-              Medical checkups, free medicines, elderly support, and healthcare awareness.
-            </p>
-          </motion.div>
-
-          <motion.div
-            whileHover={{ y: -10 }}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="group bg-white/70 backdrop-blur-xl p-6 rounded-2xl border border-amber-200 shadow-lg hover:shadow-2xl transition-all duration-500"
-          >
-            <img
-              src="/images/ambulance.jpeg"
-              alt="Education"
-              className="w-full h-52 object-cover rounded-xl mb-4 group-hover:scale-105 transition duration-500"
-            />
-
-            <div className="flex items-center gap-3 mb-3">
-              <Users size={26} className="text-amber-600 group-hover:scale-110 transition" />
-              <h3 className="text-xl font-semibold">Ambulance Service</h3>
-            </div>
-
-            <p className="text-[#4B1E00]/90 text-justify">
-              Quick-response ambulance assistance ensuring patients reach hospitals on time.
-            </p>
-          </motion.div>
-
-          <motion.div
-            whileHover={{ y: -10 }}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="group bg-white/70 backdrop-blur-xl p-6 rounded-2xl border border-amber-200 shadow-lg hover:shadow-2xl transition-all duration-500"
-          >
-            <img
-              src="/images/animals.jpeg"
-              alt="Education"
-              className="w-full h-52 object-cover rounded-xl mb-4 group-hover:scale-105 transition duration-500"
-            />
-
-            <div className="flex items-center gap-3 mb-3">
-              <Users size={26} className="text-amber-600 group-hover:scale-110 transition" />
-              <h3 className="text-xl font-semibold">Gau Seva & Animal Care</h3>
-            </div>
-
-            <p className="text-[#4B1E00]/90 text-justify">
-              Cow shelters, feeding birds & animals, and compassion for all living creatures.
-            </p>
-          </motion.div>
-
-          <motion.div
-            whileHover={{ y: -10 }}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="group bg-white/70 backdrop-blur-xl p-6 rounded-2xl border border-amber-200 shadow-lg hover:shadow-2xl transition-all duration-500"
-          >
-            <img
-              src="/images/elderly.jpeg"
-              alt="Education"
-              className="w-full h-52 object-cover rounded-xl mb-4 group-hover:scale-105 transition duration-500"
-            />
-
-            <div className="flex items-center gap-3 mb-3">
-              <Users size={26} className="text-amber-600 group-hover:scale-110 transition" />
-              <h3 className="text-xl font-semibold">Elderly & Orphan Support</h3>
-            </div>
-
-            <p className="text-[#4B1E00]/90 text-justify">
-              Shelter, support, and regular care for senior citizens and orphaned children.
-            </p>
-          </motion.div>
+              <p className="text-[#4B1E00]/85 text-sm leading-relaxed">
+                {item.desc}
+              </p>
+            </motion.div>
+          ))}
         </motion.section>
+
 
         {/* FEATURE SECTION */}
         <motion.section
@@ -673,6 +613,19 @@ export default function VatsalyaDharaPage() {
 
                 <p className="text-sm"><strong>Bank:</strong> {donation.bankName}</p>
                 <p className="text-sm"><strong>Branch:</strong> {donation.branch}</p>
+                {/* 80G Badge */}
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-full 
+                             bg-green-600/20 border border-green-400/40 
+                             text-green-700 text-sm font-medium 
+                             shadow-[0_0_15px_rgba(34,197,94,0.4)]"
+                >
+                  <CheckCircle size={16} className="text-green-600" />
+                  Eligible for 80G Tax Exemption
+                </motion.div>
               </div>
             </div>
 
