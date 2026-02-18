@@ -155,7 +155,7 @@ export default function VatsalyaDharaPage() {
             </motion.a>
 
             <a
-              href="/what-we-do"
+              href="/our-work"
               className="border border-white px-8 py-4 rounded-full text-lg hover:bg-white hover:text-black transition"
             >
               Explore Our Work
@@ -169,18 +169,21 @@ export default function VatsalyaDharaPage() {
               Registered Trust • Transparent • Community Driven
             </div>
 
-            {/* 80G Badge */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-full 
-                         bg-green-600/20 border border-green-400/40 
-                         backdrop-blur-md text-green-200 text-sm font-medium 
-                         shadow-[0_0_15px_rgba(34,197,94,0.4)]"
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="flex items-center justify-center gap-3 text-lg"
             >
-              <CheckCircle size={16} className="text-green-300" />
-              Eligible for 80G Tax Exemption
+              <CheckCircle size={26} strokeWidth={2.5} className="text-emerald-400 drop-shadow-md" />
+
+              <span className="text-[#FFE9C4]/80">
+                <span className="font-bold text-transparent bg-clip-text 
+                  bg-gradient-to-r from-emerald-400 via-green-300 to-emerald-400 
+                  drop-shadow-[0_0_8px_rgba(34,197,94,0.6)]">
+                  Eligible for 80G Tax Exemption
+                </span>
+              </span>
             </motion.div>
           </div>
         </div>
@@ -618,12 +621,9 @@ export default function VatsalyaDharaPage() {
                   initial={{ opacity: 0, y: 8 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-full 
-                             bg-green-600/20 border border-green-400/40 
-                             text-green-700 text-sm font-medium 
-                             shadow-[0_0_15px_rgba(34,197,94,0.4)]"
+                  className="py-5 mt-6 flex items-center justify-center gap-2 text-emerald-700 text-lg font-semibold"
                 >
-                  <CheckCircle size={16} className="text-green-600" />
+                  <CheckCircle size={30} strokeWidth={2.5} className="text-emerald-600" />
                   Eligible for 80G Tax Exemption
                 </motion.div>
               </div>

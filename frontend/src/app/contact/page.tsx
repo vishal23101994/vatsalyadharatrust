@@ -152,19 +152,51 @@ export default function ContactPage() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className="relative z-10 mt-12 text-center space-y-3 text-[#FFE9C4]/80"
+        className="relative z-10 mt-16 w-full max-w-4xl mx-auto"
       >
-        <div className="flex justify-center items-center gap-3">
-          <MapPin className="text-yellow-400" size={20} />
-          <span>
-            Vatsalya Bhawan, P-75, Street No. 5,
-            Bihari Colony Extension, Bihari Colony, Shahdara, Delhi – 110032
-          </span>
-        </div>
+        <div className="bg-[#3a0000]/60 backdrop-blur-md 
+            border border-yellow-400/30 
+            rounded-2xl 
+            shadow-[0_0_40px_rgba(255,215,120,0.15)] 
+            p-8 md:p-10 space-y-8">
 
-        <div className="flex justify-center items-center gap-3">
-          <Phone className="text-yellow-400" size={20} />
-          <span>+91 9910987666, +91 9810900699</span>
+          {/* HEAD OFFICE */}
+          <div className="flex items-start gap-4">
+            <MapPin className="text-yellow-400 mt-1" size={24} />
+            <div>
+              <h3 className="text-yellow-400 font-semibold text-lg mb-1">
+                Head Office
+              </h3>
+              <p className="text-[#FFE9C4]/80 text-sm leading-relaxed">
+                Vatsalya Bhawan, P-75, Street No. 5,  
+                Bihari Colony Extension, Bihari Colony,  
+                Shahdara, Delhi – 110032
+              </p>
+            </div>
+          </div>
+
+          {/* REGISTERED OFFICE */}
+          <div className="flex items-start gap-4">
+            <MapPin className="text-yellow-400 mt-1" size={24} />
+            <div>
+              <h3 className="text-yellow-400 font-semibold text-lg mb-1">
+                Registered Office
+              </h3>
+              <p className="text-[#FFE9C4]/80 text-sm leading-relaxed">
+                D 49-B, Lalita Marg, Shakarpur Extension,  
+                Laxmi Nagar, Delhi – 110092
+              </p>
+            </div>
+          </div>
+
+          {/* PHONE */}
+          <div className="flex items-center gap-4 pt-2 border-t border-yellow-400/20">
+            <Phone className="text-yellow-400" size={22} />
+            <p className="text-[#FFE9C4] font-medium">
+              +91 9910987666 &nbsp; | &nbsp; +91 9810900699
+            </p>
+          </div>
+
         </div>
       </motion.div>
 
@@ -227,16 +259,15 @@ export default function ContactPage() {
         </div>
       </motion.section>
 
-      {/* ================= GOOGLE MAP ================= */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className="relative z-10 mt-12 w-full max-w-5xl rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(255,215,120,0.2)] border border-yellow-400/30"
+        className="relative z-10 mt-12 w-full max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-[0_0_45px_rgba(255,215,120,0.25)] border border-yellow-400/30"
       >
         <iframe
-          src="https://www.google.com/maps?q=Vatsalya%20Dhara%20Trust,%20Shahdara,%20Delhi&output=embed"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.947636007671!2d77.28198241521303!3d28.66874298245769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd0033d41217%3A0x80ba696c3fd02c25!2sVatsalya%20Dhara%20Trust!5e0!3m2!1sen!2sin"
           width="100%"
           height="420"
           style={{ border: 0 }}
@@ -246,8 +277,8 @@ export default function ContactPage() {
           className="rounded-3xl"
         />
 
-        {/* Golden Overlay Border Glow */}
-        <div className="absolute inset-0 rounded-3xl pointer-events-none border border-yellow-400/30"></div>
+        {/* Golden Overlay Border */}
+        <div className="absolute inset-0 rounded-3xl pointer-events-none border border-yellow-400/40"></div>
       </motion.div>
 
     </section>

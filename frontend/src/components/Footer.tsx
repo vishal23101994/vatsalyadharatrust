@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { FaInstagram } from "react-icons/fa";
 import FloatingParticles from "@/components/FloatingParticles";
-import { MapPin, Phone, CheckCircle } from "lucide-react";
+import { MapPin, Phone, CheckCircle, HeartHandshake } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Footer() {
@@ -84,18 +84,33 @@ export default function Footer() {
                 Follow us on Instagram
               </span>
             </a>
-
           </div>
 
           {/* RIGHT SIDE */}
           <div className="text-sm space-y-6">
 
+            {/* Main Office */}
             <div className="flex gap-3">
               <MapPin size={18} className="text-yellow-400 mt-1" />
-              <p>
-                Vatsalya Bhawan, P-75, Street No. 5,  
-                Bihari Colony Extension, Bihari Colony, Shahdara, Delhi – 110032
-              </p>
+              <div>
+                <p className="font-semibold text-yellow-300">Head Office:</p>
+                <p>
+                  Vatsalya Bhawan, P-75, Street No. 5,  
+                  Bihari Colony Extension, Bihari Colony, Shahdara, Delhi – 110032
+                </p>
+              </div>
+            </div>
+
+            {/* Registered Office */}
+            <div className="flex gap-3">
+              <MapPin size={18} className="text-yellow-400 mt-1" />
+              <div>
+                <p className="font-semibold text-yellow-300">Registered Office:</p>
+                <p>
+                  D 49-B, Lalita Marg, Shakarpur Extension,  
+                  Laxmi Nagar, Delhi – 110092
+                </p>
+              </div>
             </div>
 
             <div className="flex gap-3">
@@ -105,45 +120,48 @@ export default function Footer() {
                 <p>+91 9810900699</p>
               </div>
             </div>
-
-            {/* Premium Donate Button */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="pt-2"
-            >
-              <Link
-                href="/donate"
-                className="inline-flex items-center gap-2 px-10 py-4 
-                  rounded-full font-semibold text-[#4B1E00]
-                  bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600
-                  shadow-[0_10px_30px_rgba(255,215,120,0.4)]
-                  hover:shadow-[0_10px_40px_rgba(255,215,120,0.7)]
-                  transition duration-300"
-              >
-                ❤️ Support Our Mission
-              </Link>
-            </motion.div>
-
           </div>
+        </div>
+        {/* CENTER SUPPORT SECTION */}
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
+
+          {/* Support Button */}
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.96 }}>
+            <Link
+              href="/donate"
+              className="flex items-center gap-2
+                bg-gradient-to-r from-amber-500 to-orange-500
+                text-white px-6 py-2 rounded-full
+                font-semibold transition-all duration-300
+                hover:shadow-lg hover:shadow-orange-300/40"
+            >
+              <HeartHandshake size={17} />
+              Support Our Mission
+            </Link>
+          </motion.div>
+
+          {/* 80G Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex items-center justify-center gap-3 text-lg"
+          >
+            <CheckCircle size={26} strokeWidth={2.5} className="text-emerald-400 drop-shadow-md" />
+
+            <span className="text-[#FFE9C4]/80">
+              <span className="font-bold text-transparent bg-clip-text 
+                bg-gradient-to-r from-emerald-400 via-green-300 to-emerald-400 
+                drop-shadow-[0_0_8px_rgba(34,197,94,0.6)]">
+                Eligible for 80G Tax Exemption
+              </span>
+            </span>
+          </motion.div>
+
         </div>
 
         {/* ================= BOTTOM ================= */}
         <div className="mt-14 border-t border-yellow-500/30 pt-8 text-center">
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="inline-flex items-center gap-2 px-6 py-2 rounded-full 
-              bg-green-600/20 border border-green-400/40 
-              text-green-200 text-xs font-medium 
-              shadow-[0_0_20px_rgba(34,197,94,0.4)] mb-5"
-          >
-            <CheckCircle size={14} />
-            Eligible for 80G Tax Exemption
-          </motion.div>
-
           <p className="text-sm">
             © {new Date().getFullYear()} Vatsalya Dhara Trust • Serving Humanity
           </p>
